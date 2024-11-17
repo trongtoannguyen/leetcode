@@ -1,42 +1,76 @@
-import java.util.Arrays;
+ 
+/**
+ * Write a description of class ArraySolution here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class ArraySolution
+{    
+    public int[] sortArrayByParity(int[] nums) {
+        int beg = 0;
+        int end = nums.length - 1;
+        
+        while(beg <= end){
+            if(nums[beg] % 2 == 0)
+                beg += 1;
+            else{
+                int temp = nums[beg];
+                nums[beg] = nums[end];
+                nums[end] = temp;
+                end -= 1;
+            }
+        }
+        return nums;
+    }
     
-class ArraySolution {
+    // Problem2: Remove Element
+    // Given an integer array nums and an integer val, remove all occurrences of val in nums in-place.
+    // The order of the elements may be changed.
+    // Then return the number of elements in nums which are not equal to val.
+    public int removeElement(int[] nums, int val) {
+        // init write pointer(black) and read pointer(green) at the first element
+        int writePointer = 0;
+        
+        // loop to the last element, if read element:
+        for(int readElement : nums){
+            // not equals val, swap write element with read element and move write to right
+            if(readElement != val){
+                int temp = readElement;
+                readElement = nums[writePointer];
+                nums[writePointer] = temp;
+                writePointer++;
+            }
+            // equals val, continue
+        }
+        return writePointer;
+    }
     
-    public int heightChecker(int[] heights) {
-        // Solution 2: Bubble Sort
-
-        // Step1: sort copied array of heights[]
-        // copy origin array and sort
+    public int[] heightChecker(int[] heights) {
+        // Solution 1: Selection Sort
+        // Pros: Many Swaps
+        // copy origin array and loop this copy array then swap current element with min of unsorted array
         int[] cp = heights.clone();
         int n = cp.length;
-
-        // outer loop(steps), start from 1
-        for (int i = 1; i < n; i++) {
-            // inner loop(elements(init 4) to compare) start from 0(index-based):
-            // i=1->j=3 i=2->j=2 -->> j<n-i
-            boolean swapped = false;
-            for (int j = 0; j < n - i; j++) {
-                // compare and swap j vs j+1
-                if (cp[j] > cp[j + 1]) {
-                    int temp = cp[j + 1];
-                    cp[j + 1] = cp[j];
-                    cp[j] = temp;
-                    // flag to exit when the array is sorted
-                    swapped = true;
+        for(int i = 0; i < n; i++){
+            // init min at first unsorted element
+            int min = cp[i];
+            int minIdx = i;
+            // find min and its index of unsorted array
+            for(int j = i + 1; j < n; j++){
+                if(cp[j] < min){
+                    min = cp[j];
+                    minIdx = j;
                 }
             }
-            if(!swapped){
-                break;
+            
+            // swap element at min's index with current element
+            if(min != cp[i]){
+                int temp = cp[minIdx];
+                cp[minIdx] = cp[i];
+                cp[i] = temp;
             }
         }
-
-        // Step2: compare cp vs heights array
-        int k = 0;
-        for (int i = 0; i < n; i++) {
-            if (heights[i] != cp[i]) {
-                k += 1;
-            }
-        }
-        return k;
+        return cp;
     }
 }

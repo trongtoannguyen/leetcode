@@ -47,30 +47,8 @@ public class ArraySolution
     }
     
     public int[] heightChecker(int[] heights) {
-        // Solution 1: Selection Sort
-        // Pros: Many Swaps
-        // copy origin array and loop this copy array then swap current element with min of unsorted array
-        int[] cp = heights.clone();
-        int n = cp.length;
-        for(int i = 0; i < n; i++){
-            // init min at first unsorted element
-            int min = cp[i];
-            int minIdx = i;
-            // find min and its index of unsorted array
-            for(int j = i + 1; j < n; j++){
-                if(cp[j] < min){
-                    min = cp[j];
-                    minIdx = j;
-                }
-            }
-            
-            // swap element at min's index with current element
-            if(min != cp[i]){
-                int temp = cp[minIdx];
-                cp[minIdx] = cp[i];
-                cp[i] = temp;
-            }
-        }
-        return cp;
+        // Solution 3: Merge sort
+        heights = Util.mergeSort(heights);
+        return heights;
     }
 }

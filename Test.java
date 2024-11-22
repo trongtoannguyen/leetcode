@@ -8,7 +8,7 @@
 public class Test
 {
     // instance variables - replace the example below with your own
-    private static final int[] nums = {1,0,2,1,3,4,3};
+    private static final int[] nums = {6,5,3,1,8,7,2};
 
     public static void main(){
         ArraySolution as = new ArraySolution();

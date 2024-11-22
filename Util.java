@@ -43,6 +43,47 @@ public class Util
         }
     }
     
+    // Heap Sort
+    // Step1: build heap (heapify) to n element with root node defined
+    private static void heapify(int[] array, int n, int root){
+        int largest = root;
+        int leftNode = root * 2 + 1;
+        int rightNode = root * 2 +2;
+        if(leftNode < n && array[leftNode] > array[largest]){
+            largest = leftNode;
+        }
+        
+        if(rightNode < n && array[rightNode] > array[largest]){
+            largest = rightNode;
+        }
+        
+        if(largest != root){
+            // swap root with greater child node
+            int temp = array[largest];
+            array[largest] = array[root];
+            array[root] =temp;
+                    
+            // recursive heapify the heap from largest node if it was damaged
+            heapify(array, n, largest);
+        }        
+    }
+    // Step2: swap root with last node and rebuild
+    public static void heapSort(int[] arr){
+        // heapify from last possibility parent node to root (0th)
+        int n = arr.length;
+        for(int root = n/2 - 1; root >= 0; root--){
+            heapify(arr, n, root);
+        }
+        
+        // swap root with last node and rebuild
+        for(int i = n-1; i > 0; i--){
+            int temp = arr[0];
+            arr[0]=arr[i];
+            arr[i]=temp;
+            heapify(arr, i, 0);
+        }
+    }
+    
     // Merge sort
     // Step1: Incursively split the array ultil there is only one element in array parameter
     public static int[] mergeSort(int[] array){

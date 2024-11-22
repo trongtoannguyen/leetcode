@@ -47,8 +47,8 @@ public class ArraySolution
     }
     
     public int[] heightChecker(int[] heights) {
-        // Solution 3: Merge sort
-        heights = Util.mergeSort(heights);
+        // Solution 4: Heap sort
+        Util.heapSort(heights);
         return heights;
     }
 }

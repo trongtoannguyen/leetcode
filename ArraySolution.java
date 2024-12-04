@@ -51,4 +51,27 @@ public class ArraySolution
         Util.heapSort(heights);
         return heights;
     }
+    
+    public int[] sortedSquares(int[] nums) {
+        // solution 1: using 2 pointers at left and right of the array to compare abs value of each element, push square of bigger one to the end of array
+        int n = nums.length;
+        int left = 0;
+        int right = n - 1;
+        int[] result = new int[n];
+        int i = n - 1;
+        while(left <= right || i >= 0){
+            // square bigger, push to the end of array and narrow down left/right
+            if(
+                Math.abs(nums[right]) >= Math.abs(nums[left])
+            ){
+                result[i] = (int)Math.pow(nums[right], 2);
+                right-=1;
+            }else{
+                result[i] = (int)Math.pow(nums[left], 2);
+                left+=1;
+            }
+            i-=1;
+        }
+        return result;
+    }
 }

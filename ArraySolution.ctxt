@@ -7,4 +7,6 @@ comment2.params=nums\ val
 comment2.target=int\ removeElement(int[],\ int)
 comment3.params=heights
 comment3.target=int[]\ heightChecker(int[])
-numComments=4
+comment4.params=nums
+comment4.target=int[]\ sortedSquares(int[])
+numComments=5

@@ -8,11 +8,11 @@
 public class Test
 {
     // instance variables - replace the example below with your own
-    private static final int[] nums = {6,5,3,1,8,7,2};
+    private static final int[] nums = {-4,-1,0,3,10};
 
     public static void main(){
         ArraySolution as = new ArraySolution();
-        int[] cp = as.heightChecker(nums);
+        int[] cp = as.sortedSquares(nums);
         Util.printArray(cp);
     }
 }

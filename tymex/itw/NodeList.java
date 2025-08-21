@@ -23,11 +23,15 @@ public class NodeList {
     public static class ListNode {
         public int val;
         public ListNode next;
-        public ListNode() {}
+
+        public ListNode() {
+        }
+
         ListNode(int val, ListNode next) {
             this.val = val;
             this.next = next;
         }
+
         public ListNode(int val) {
             this.val = val;
             this.next = null;
@@ -35,6 +39,7 @@ public class NodeList {
 
         @Override
         public String toString() {
+
             StringBuilder sb = new StringBuilder();
             sb.append(val);
             ListNode temp = next;
@@ -45,6 +50,17 @@ public class NodeList {
             }
             sb.append(" -> null");
             return sb.toString();
+        }
+
+        // Helper method to print the current list from head node
+        private void printList(ListNode head) {
+            System.out.print("List now: ");
+            ListNode temp = head;
+            while (temp != null) {
+                System.out.print(temp.val + " -> ");
+                temp = temp.next;
+            }
+            System.out.println("null\n");
         }
     }
 }

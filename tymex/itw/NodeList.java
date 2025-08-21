@@ -53,7 +53,7 @@ public class NodeList {
         }
 
         // Helper method to print the current list from head node
-        private void printList(ListNode head) {
+        public void printList(ListNode head) {
             System.out.print("List now: ");
             ListNode temp = head;
             while (temp != null) {

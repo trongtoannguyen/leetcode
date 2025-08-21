@@ -37,6 +37,16 @@ public class NodeList {
             this.next = null;
         }
 
+        public static ListNode createNodeList(int... numbers) {
+            ListNode head = new ListNode(numbers[0]);
+            ListNode temp = head;
+            for (int i = 1; i < numbers.length; i++) {
+                temp.next = new ListNode(numbers[i]);
+                temp = temp.next;
+            }
+            return head;
+        }
+
         @Override
         public String toString() {
 

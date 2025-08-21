@@ -4,12 +4,9 @@ import tymex.itw.NodeList;
 
 public class InsertionSort {
     public static void main(String[] args) {
-        NodeList.ListNode head = new NodeList.ListNode(4);
-        head.next = new NodeList.ListNode(2);
-        head.next.next = new NodeList.ListNode(1);
-        head.next.next.next = new NodeList.ListNode(3);
-        head.next.next.next.next = new NodeList.ListNode(5);
-        head.next.next.next.next.next = new NodeList.ListNode(6);
+        final int[] arr = {5, 3, 6, 8, 2, 1, 4};
+        NodeList.ListNode head = NodeList.ListNode.createNodeList(arr);
+
         //print list
         System.out.println("Original list: " + head);
 
@@ -21,6 +18,8 @@ public class InsertionSort {
     static class Solution {
         public NodeList.ListNode insertionSortList(NodeList.ListNode head) {
             NodeList.ListNode dummy = new NodeList.ListNode(); // dummy node as the new head
+            System.out.println("Dummy node: " + dummy + "\n");
+
             NodeList.ListNode curr = head;
 
             while (curr != null) {
@@ -45,24 +44,13 @@ public class InsertionSort {
                 prev.next = curr;
 
                 // Print current state of sorted list
-                printList(dummy.next);
+                System.out.println("Sorted list now: " + dummy + "\n");
 
                 // Move to next node
                 curr = next;
             }
 
             return dummy.next;
-        }
-
-        // Helper method to print the current list
-        private void printList(NodeList.ListNode head) {
-            System.out.print("Sorted list now: ");
-            NodeList.ListNode temp = head;
-            while (temp != null) {
-                System.out.print(temp.val + " -> ");
-                temp = temp.next;
-            }
-            System.out.println("null\n");
         }
     }
 }

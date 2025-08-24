@@ -40,8 +40,39 @@ public class RomanToInteger {
         return result;
     }
 
+    // implement switch case to improve runtime
+    private static int solution2(String s) {
+        int result = 0;
+        int preValue = 0;
+
+        for (var i = s.length() - 1; i >= 0; i--) {
+            char c = s.charAt(i);
+            int cValue = switch (c) {
+                case 'I' -> 1;
+                case 'V' -> 5;
+                case 'X' -> 10;
+                case 'L' -> 50;
+                case 'C' -> 100;
+                case 'D' -> 500;
+                case 'M' -> 1000;
+                default -> 0;
+            };
+
+            if (cValue < preValue) {
+                result -= cValue;
+            } else {
+                result += cValue;
+            }
+
+            preValue = cValue;
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
         String s = "MCMXCIV"; // 1994
         System.out.println(solution(s));
+        System.out.println(solution2(s));
     }
 }

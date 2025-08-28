@@ -17,11 +17,27 @@ class Solution:
         # return liệu stack rỗng
         return len(stack) == 0
 
+    def isValid2(self, s: str) -> bool:
+        stack = []
+        bracket_map = {")": "(", "}": "{", "]": "["}
+        for bracket in s:
+            #   if bracket is open -> push on top of stack
+            if bracket in bracket_map.values():
+                stack.append(bracket)
+
+            # if bracket is close -> pop top if it is open bracket
+            elif bracket in bracket_map.keys():
+                if stack and bracket_map[bracket] == stack[-1]:
+                    stack.pop()
+                else:
+                    return False
+        return len(stack) == 0
+
 
 if __name__ == "__main__":
     s = Solution()
-    print(s.isValid("()"))  # True
-    print(s.isValid("()[]{}"))  # True
-    print(s.isValid("(]"))  # False
-    print(s.isValid("([)]"))  # False
-    print(s.isValid("{[]}"))  # True
+    print(s.isValid2("()"))  # True
+    print(s.isValid2("()[]{}"))  # True
+    print(s.isValid2("(]"))  # False
+    print(s.isValid2("([)]"))  # False
+    print(s.isValid2("{[]}"))  # True
